@@ -35,8 +35,6 @@ stream {
         server K8SHA_IP1:6443 weight=5 max_fails=3 fail_timeout=30s;
         server K8SHA_IP2:6443 weight=5 max_fails=3 fail_timeout=30s;
         server K8SHA_IP3:6443 weight=5 max_fails=3 fail_timeout=30s;
-        server K8SHA_IP4:6443 weight=5 max_fails=3 fail_timeout=30s;
-        server K8SHA_IP5:6443 weight=5 max_fails=3 fail_timeout=30s;
 
     }
 
