@@ -79,7 +79,6 @@ sed \
 etcd_local/etcd.service.tpl > /etc/systemd/system/etcd.service
 
 
-
 # set keepalived config file
 mv /etc/keepalived/keepalived.conf /etc/keepalived/keepalived.conf.bak
 
