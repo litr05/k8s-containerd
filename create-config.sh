@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # local machine ip address
-export K8SHA_IPLOCAL=172.26.133.21
+export K8SHA_IPLOCAL=192.168.4.169
 
 # local machine etcd name, options: etcd1, etcd2, etcd3
 export K8SHA_ETCDNAME=etcd1
@@ -19,17 +19,18 @@ export K8SHA_KA_INTF=ens18
 # all masters settings below must be same
 #######################################
 
+
 # master keepalived virtual ip address
-export K8SHA_IPVIRTUAL=172.26.133.20
+export K8SHA_IPVIRTUAL=192.168.4.171
 
 # master01 ip address
-export K8SHA_IP1=172.26.133.21
+export K8SHA_IP1=192.168.4.169
 
 # master02 ip address
-export K8SHA_IP2=172.26.133.22
+export K8SHA_IP2=192.168.4.170
 
 # master03 ip address
-export K8SHA_IP3=172.26.133.23
+export K8SHA_IP3=192.168.5.48
 
 # master01 hostname
 export K8SHA_HOSTNAME1=hb-master01
@@ -53,22 +54,31 @@ export K8SHA_TOKEN=535tdi.utzk5hf75b04ht8l
 # kubernetes CIDR pod subnet, if CIDR pod subnet is "10.244.0.0/16" please set to "10.244.0.0\\/16"
 export K8SHA_CIDR=10.244.0.0\\/16
 
+#etcd version
+export ETCD_VERSION="v3.1.12"
+
 
 ##############################
 # please do not modify anything below
 ##############################
 
-# set etcd cluster docker-compose.yaml file
+# install etcd cluster
+touch /etc/etcd.env
+echo "PEER_NAME=$K8SHA_ETCDNAME" > /etc/etcd.env
+echo "PRIVATE_IP=$K8SHA_IPLOCAL" >> /etc/etcd.env
+
 sed \
--e "s/K8SHA_ETCDNAME/$K8SHA_ETCDNAME/g" \
 -e "s/K8SHA_IPLOCAL/$K8SHA_IPLOCAL/g" \
 -e "s/K8SHA_IP1/$K8SHA_IP1/g" \
 -e "s/K8SHA_IP2/$K8SHA_IP2/g" \
 -e "s/K8SHA_IP3/$K8SHA_IP3/g" \
--e "s/ETCD_TOKEN/$ETCD_TOKEN/g" \
-etcd/docker-compose.yaml.tpl > etcd/docker-compose.yaml
+-e "s/K8SHA_ETCDNAME/$K8SHA_ETCDNAME/g" \
+-e "s/K8SHA_HOSTNAME1/$K8SHA_HOSTNAME1/g" \
+-e "s/K8SHA_HOSTNAME2/$K8SHA_HOSTNAME2/g" \
+-e "s/K8SHA_HOSTNAME3/$K8SHA_HOSTNAME3/g" \
+etcd_local/etcd.service.tpl > /etc/systemd/system/etcd.service
 
-echo 'set etcd cluster docker-compose.yaml file success: etcd/docker-compose.yaml'
+
 
 # set keepalived config file
 mv /etc/keepalived/keepalived.conf /etc/keepalived/keepalived.conf.bak
@@ -82,7 +92,7 @@ sed \
 -e "s/K8SHA_KA_PRIO/$K8SHA_KA_PRIO/g" \
 -e "s/K8SHA_IPVIRTUAL/$K8SHA_IPVIRTUAL/g" \
 -e "s/K8SHA_KA_AUTH/$K8SHA_KA_AUTH/g" \
-keepalived/keepalived.conf.tpl > /etc/keepalived/keepalived.conf
+etcd_local/keepalived/keepalived.conf.tpl > /etc/keepalived/keepalived.conf
 
 echo 'set keepalived config file success: /etc/keepalived/keepalived.conf'
 

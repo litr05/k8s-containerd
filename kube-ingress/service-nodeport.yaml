@@ -15,6 +15,6 @@ spec:
     targetPort: 443
     protocol: TCP
   externalIPs:
-  - 172.26.133.20
+  - 192.168.4.171
   selector:
     app: ingress-nginx
