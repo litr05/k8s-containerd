@@ -2,8 +2,8 @@ apiVersion: kubeadm.k8s.io/v1alpha1
 kind: MasterConfiguration
 kubernetesVersion: v1.10.3
 api:
-  advertiseAddress: 192.168.4.171
-  controlPlaneEndpoint: 192.168.4.171
+  advertiseAddress: 192.168.5.250
+  controlPlaneEndpoint: 192.168.5.250
 networking:
   podSubnet: 10.244.0.0/16
 apiServerCertSANs:
@@ -12,14 +12,14 @@ apiServerCertSANs:
 - hb-master03
 - 192.168.4.169
 - 192.168.4.170
-- 192.168.5.48
-- 192.168.4.171
+- 192.168.5.49
+- 192.168.5.250
 - 127.0.0.1
 etcd:
   endpoints:
   - http://192.168.4.169:2379
   - http://192.168.4.170:2379
-  - http://192.168.5.48:2379
+  - http://192.168.5.49:2379
 apiServerExtraArgs:
   apiserver-count: "3"
 token: 535tdi.utzk5hf75b04ht8l

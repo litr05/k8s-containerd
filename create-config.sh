@@ -21,7 +21,7 @@ export K8SHA_KA_INTF=ens18
 
 
 # master keepalived virtual ip address
-export K8SHA_IPVIRTUAL=192.168.4.171
+export K8SHA_IPVIRTUAL=192.168.5.250
 
 # master01 ip address
 export K8SHA_IP1=192.168.4.169
@@ -30,7 +30,7 @@ export K8SHA_IP1=192.168.4.169
 export K8SHA_IP2=192.168.4.170
 
 # master03 ip address
-export K8SHA_IP3=192.168.5.48
+export K8SHA_IP3=192.168.5.49
 
 # master01 hostname
 export K8SHA_HOSTNAME1=hb-master01
@@ -62,7 +62,7 @@ export ETCD_VERSION="v3.1.12"
 # please do not modify anything below
 ##############################
 
-# install etcd cluster
+# config etcd cluster
 touch /etc/etcd.env
 echo "PEER_NAME=$K8SHA_ETCDNAME" > /etc/etcd.env
 echo "PRIVATE_IP=$K8SHA_IPLOCAL" >> /etc/etcd.env
@@ -79,6 +79,7 @@ sed \
 etcd_local/etcd.service.tpl > /etc/systemd/system/etcd.service
 
 
+
 # set keepalived config file
 mv /etc/keepalived/keepalived.conf /etc/keepalived/keepalived.conf.bak
 
@@ -91,7 +92,7 @@ sed \
 -e "s/K8SHA_KA_PRIO/$K8SHA_KA_PRIO/g" \
 -e "s/K8SHA_IPVIRTUAL/$K8SHA_IPVIRTUAL/g" \
 -e "s/K8SHA_KA_AUTH/$K8SHA_KA_AUTH/g" \
-etcd_local/keepalived/keepalived.conf.tpl > /etc/keepalived/keepalived.conf
+keepalived/keepalived.conf.tpl > /etc/keepalived/keepalived.conf
 
 echo 'set keepalived config file success: /etc/keepalived/keepalived.conf'
 
