@@ -1,8 +1,7 @@
-user  nginx;
-worker_processes  1;
+user www-data;
+worker_processes auto;
 
 error_log  /var/log/nginx/error.log warn;
-pid        /var/run/nginx.pid;
 
 
 events {
@@ -28,6 +27,7 @@ http {
     #gzip  on;
 
     include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/modules-enabled/*.conf;
 }
 
 stream {
