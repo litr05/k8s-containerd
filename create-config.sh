@@ -4,7 +4,11 @@
 export K8SHA_IPLOCAL=172.26.133.161
 
 # local machine etcd name, options: etcd1, etcd2, etcd3
+<<<<<<< HEAD
 export K8SHA_ETCDNAME=kube-master03
+=======
+export K8SHA_ETCDNAME=kube-master01
+>>>>>>> 95635c0140a1366450ad46c7f34f7adc1c877262
 
 # local machine keepalived state config, options: MASTER, BACKUP. One keepalived cluster only one MASTER, other's are BACKUP
 export K8SHA_KA_STATE=MASTER
@@ -104,6 +108,7 @@ sed \
 -e "s/K8SHA_IP3/$K8SHA_IP3/g" \
 nginx-lb/nginx-lb.conf.tpl >  /etc/nginx/nginx.conf
 
+ln -s /etc/nginx/sites-available/kubeapi.conf /etc/nginx/sites-enabled/kubeapi.conf
 echo 'set nginx load balancer config file success: nginx-lb/nginx-lb.conf'
 
 # set kubeadm init config file

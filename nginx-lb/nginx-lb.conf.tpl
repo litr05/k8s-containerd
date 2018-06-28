@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 user  nginx;
 worker_processes  auto;
+=======
+user www-data;
+worker_processes auto;
+>>>>>>> 95635c0140a1366450ad46c7f34f7adc1c877262
 
 error_log  /var/log/nginx/error.log warn;
-pid        /var/run/nginx.pid;
 
 
 events {
@@ -28,6 +32,7 @@ http {
     #gzip  on;
 
     include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/modules-enabled/*.conf;
 }
 
 stream {
