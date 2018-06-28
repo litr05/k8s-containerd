@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # local machine ip address
-export K8SHA_IPLOCAL=192.168.4.169
+export K8SHA_IPLOCAL=172.26.133.162
 
 # local machine etcd name, options: etcd1, etcd2, etcd3
-export K8SHA_ETCDNAME=etcd1
+export K8SHA_ETCDNAME=kube-master02
 
 # local machine keepalived state config, options: MASTER, BACKUP. One keepalived cluster only one MASTER, other's are BACKUP
-export K8SHA_KA_STATE=MASTER
+export K8SHA_KA_STATE=BACKUP
 
 # local machine keepalived priority config, options: 102, 101,100 MASTER must 102
-export K8SHA_KA_PRIO=102
+export K8SHA_KA_PRIO=101
 
 # local machine keepalived network interface name config, for example: eth0
 export K8SHA_KA_INTF=ens18
@@ -21,25 +21,26 @@ export K8SHA_KA_INTF=ens18
 
 
 # master keepalived virtual ip address
-export K8SHA_IPVIRTUAL=192.168.5.250
+export K8SHA_IPVIRTUAL=172.26.133.160
 
 # master01 ip address
-export K8SHA_IP1=192.168.4.169
+export K8SHA_IP1=172.26.133.161
 
 # master02 ip address
-export K8SHA_IP2=192.168.4.170
+export K8SHA_IP2=172.26.133.162
 
 # master03 ip address
-export K8SHA_IP3=192.168.5.49
+export K8SHA_IP3=172.26.133.163
+
 
 # master01 hostname
-export K8SHA_HOSTNAME1=hb-master01
+export K8SHA_HOSTNAME1=kube-master01
 
 # master02 hostname
-export K8SHA_HOSTNAME2=hb-master02
+export K8SHA_HOSTNAME2=kube-master02
 
 # master03 hostname
-export K8SHA_HOSTNAME3=hb-master03
+export K8SHA_HOSTNAME3=kube-master03
 
 # keepalived auth_pass config, all masters must be same
 export K8SHA_KA_AUTH=56cf8dd754c90194d1600c483e10abfr
@@ -101,7 +102,7 @@ sed \
 -e "s/K8SHA_IP1/$K8SHA_IP1/g" \
 -e "s/K8SHA_IP2/$K8SHA_IP2/g" \
 -e "s/K8SHA_IP3/$K8SHA_IP3/g" \
-nginx-lb/nginx-lb.conf.tpl > nginx-lb/nginx-lb.conf
+nginx-lb/nginx-lb.conf.tpl >  /etc/nginx/nginx.conf
 
 echo 'set nginx load balancer config file success: nginx-lb/nginx-lb.conf'
 
@@ -121,8 +122,6 @@ kubeadm-init.yaml.tpl > kubeadm-init.yaml
 sed \
 -e "s/K8SHA_IPVIRTUAL/$K8SHA_IPVIRTUAL/g" \
 kube-ingress/service-nodeport.yaml.tpl > kube-ingress/service-nodeport.yaml
-
-
 
 
 echo 'set kubeadm init config file success: kubeadm-init.yaml'
