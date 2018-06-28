@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # local machine ip address
-export K8SHA_IPLOCAL=172.26.133.162
+export K8SHA_IPLOCAL=172.26.133.161
 
 # local machine etcd name, options: etcd1, etcd2, etcd3
-export K8SHA_ETCDNAME=kube-master02
+export K8SHA_ETCDNAME=kube-master03
 
 # local machine keepalived state config, options: MASTER, BACKUP. One keepalived cluster only one MASTER, other's are BACKUP
-export K8SHA_KA_STATE=BACKUP
+export K8SHA_KA_STATE=MASTER
 
 # local machine keepalived priority config, options: 102, 101,100 MASTER must 102
-export K8SHA_KA_PRIO=101
+export K8SHA_KA_PRIO=102
 
 # local machine keepalived network interface name config, for example: eth0
 export K8SHA_KA_INTF=ens18
