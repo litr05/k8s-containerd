@@ -1,6 +1,6 @@
 # Развертываение kubernetes HA с containerd
 1. Cхема и описание развертывания
-![схема развертывания](https://github.com/rjeka/k8s-containerd/blob/master/images/ha.png)
+![](https://habrastorage.org/webt/db/xm/pn/dbxmpnpsth-psiiyn_ittkfkc4a.png)
 
 При разворачивании кластера используется keepalived. Keepalived  создает виртуальный IP (VIRTIP) который указывает на один из трех мастеров. 
 Если какой либо из мастеров "падает", то keepalived переключит VIRTIP на следующего мастерф, согласно "весу", указанному при настройке keepalived на каждом мастере.<br/>
@@ -39,3 +39,11 @@ cd /
 wget https://storage.googleapis.com/cri-containerd-release/cri-containerd-1.1.0-rc.0.linux-amd64.tar.gz
 tar -xvf cri-containerd-1.1.0-rc.0.linux-amd64.tar.gz
 ```
+4. Настраиваем конфиги
+```bash
+mkdir -p /etc/containerd
+nano /etc/containerd/config.toml
+
+```
+4. 
+
