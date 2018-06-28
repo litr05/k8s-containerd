@@ -1,2 +1,3 @@
 # Развертываение kubernetes HA с containerd
-В данном репозитории собранны скрипты для быстрой установки HA кластера kubernetes, который работает без docker и использует containerd.
+1.  Схема и описание развертывания развертывания
+	![]({{site.baseurl}}/https://github.com/rjeka/k8s-containerd/raw/master/images/ha-kubernetes.png)
