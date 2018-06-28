@@ -1,5 +1,5 @@
 # Развертываение kubernetes HA с containerd
-1.  Схема и описание развертывания развертывания
+1. Cхема и описание развертывания
 ![схема развертывания](https://github.com/rjeka/k8s-containerd/blob/master/images/ha.png)
 
 При разворачивании кластера используется keepalived. Keepalived  создает виртуальный IP (VIRTIP) который указывает на один из трех мастеров. 
@@ -32,4 +32,10 @@ deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 apt-get update
 apt-get install -y kubelet kubeadm kubectl unzip tar apt-transport-https btrfs-tools libseccomp2 socat util-linux mc vim keepalived
+```
+3. Установка conteinerd
+```bash
+cd /
+wget https://storage.googleapis.com/cri-containerd-release/cri-containerd-1.1.0-rc.0.linux-amd64.tar.gz
+tar -xvf cri-containerd-1.1.0-rc.0.linux-amd64.tar.gz
 ```
