@@ -21,5 +21,8 @@ etcd:
   - http://K8SHA_IP3:2379
 apiServerExtraArgs:
   apiserver-count: "3"
+#feature-gates: 
+#  DynamicKubeletConfig: true
+#  CoreDNS: true  
 token: K8SHA_TOKEN
 tokenTTL: "0"
