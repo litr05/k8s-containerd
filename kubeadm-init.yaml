@@ -22,5 +22,8 @@ etcd:
   - http://172.26.133.163:2379
 apiServerExtraArgs:
   apiserver-count: "3"
+#feature-gates: 
+#  DynamicKubeletConfig: true
+#  CoreDNS: true  
 token: 535tdi.utzk5hf75b04ht8l
 tokenTTL: "0"
