@@ -24,5 +24,6 @@ apiServerExtraArgs:
 #feature-gates: 
 #  DynamicKubeletConfig: true
 #  CoreDNS: true  
+criSocket: /run/containerd/containerd.sock
 token: K8SHA_TOKEN
 tokenTTL: "0"
