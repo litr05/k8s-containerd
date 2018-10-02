@@ -1,5 +1,6 @@
-apiVersion: kubeadm.k8s.io/v1alpha1
-kind: MasterConfiguration
+apiVersion: kubeadm.k8s.io/v1alpha3
+kind: ClusterConfiguration
+kubernetesVersion: stable
 api:
   advertiseAddress: K8SHA_IPVIRTUAL
   controlPlaneEndpoint: K8SHA_IPVIRTUAL
