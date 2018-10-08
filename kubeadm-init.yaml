@@ -1,28 +1,30 @@
-apiVersion: kubeadm.k8s.io/v1alpha1
-kind: MasterConfiguration
+apiVersion: kubeadm.k8s.io/v1alpha3
+kind: ClusterConfiguration
+kubernetesVersion: stable
 api:
-  advertiseAddress: 172.26.133.160
-  controlPlaneEndpoint: 172.26.133.160
+  advertiseAddress: K8SHA_IPVIRTUAL
+  controlPlaneEndpoint: K8SHA_IPVIRTUAL
 networking:
-  podSubnet: 10.244.0.0/16
+  podSubnet: 192.168.0.0/16
 apiServerCertSANs:
-- kube-master01
-- kube-master02
-- kube-master03
-- 172.26.133.161
-- 172.26.133.162
-- 172.26.133.163
-- 172.26.133.160
+- master01-katalog
+- master02-katalog
+- master03-katalog
+- 10.73.69.148
+- 10.73.68.147
+- 10.37.69.12
+- K8SHA_IPVIRTUAL
 - 127.0.0.1
 etcd:
   endpoints:
-  - http://172.26.133.161:2379
-  - http://172.26.133.162:2379
-  - http://172.26.133.163:2379
+  - http://10.73.69.148:2379
+  - http://10.73.68.147:2379
+  - http://10.37.69.12:2379
 apiServerExtraArgs:
   apiserver-count: "3"
 #feature-gates: 
 #  DynamicKubeletConfig: true
 #  CoreDNS: true  
+criSocket: /run/containerd/containerd.sock
 token: 535tdi.utzk5hf75b04ht8l
 tokenTTL: "0"

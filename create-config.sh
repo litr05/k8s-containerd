@@ -1,48 +1,44 @@
 #!/bin/bash
-
+export K8SHA_IPLOCAL=10.73.69.148
 
 # local machine etcd name, options: etcd1, etcd2, etcd3
-export K8SHA_ETCDNAME=kube-master01
+export K8SHA_ETCDNAME=master01-katalog
 
 #######################################
 # all masters settings below must be same
 #######################################
 
-
-# master keepalived virtual ip address
-export K8SHA_IPVIRTUAL=172.26.133.160
-
 # master01 ip address
-export K8SHA_IP1=172.26.133.161
+export K8SHA_IP1=10.73.69.148
 
 # master02 ip address
-export K8SHA_IP2=172.26.133.162
+export K8SHA_IP2=10.73.68.147
 
 # master03 ip address
-export K8SHA_IP3=172.26.133.163
+export K8SHA_IP3=10.37.69.12
 
 
 # master01 hostname
-export K8SHA_HOSTNAME1=kube-master01
+export K8SHA_HOSTNAME1=master01-katalog
 
 # master02 hostname
-export K8SHA_HOSTNAME2=kube-master02
+export K8SHA_HOSTNAME2=master02-katalog
 
 # master03 hostname
-export K8SHA_HOSTNAME3=kube-master03
+export K8SHA_HOSTNAME3=master03-katalog
 
 # keepalived auth_pass config, all masters must be same
-export K8SHA_KA_AUTH=56cf8dd754c90194d1600c483e10abfr
+export K8SHA_KA_AUTH=56cf8dd754b90194d4500c483e10abfr
 
 #etcd tocken:
-export ETCD_TOKEN=9489bf67bdfe1b3ae077d6fd9e7efefd
+export ETCD_TOKEN=9489bf67bdfe1b3ar077d6fd9e7efefd
 
 # kubernetes cluster token, you can use 'kubeadm token generate' to get a new one
 export K8SHA_TOKEN=535tdi.utzk5hf75b04ht8l
 
 
 # kubernetes CIDR pod subnet, if CIDR pod subnet is "10.244.0.0/16" please set to "10.244.0.0\\/16"
-export K8SHA_CIDR=10.244.0.0\\/16
+export K8SHA_CIDR=192.168.0.0\\/16
 
 #etcd version
 export ETCD_VERSION="v3.1.24"
@@ -66,6 +62,7 @@ sed \
 -e "s/K8SHA_HOSTNAME1/$K8SHA_HOSTNAME1/g" \
 -e "s/K8SHA_HOSTNAME2/$K8SHA_HOSTNAME2/g" \
 -e "s/K8SHA_HOSTNAME3/$K8SHA_HOSTNAME3/g" \
+-e "s/ETCD_TOKEN/$ETCD_TOKEN/g" \
 etcd_local/etcd.service.tpl > /etc/systemd/system/etcd.service
 
 
